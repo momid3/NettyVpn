@@ -19,7 +19,7 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static com.momid.vpn.VpnServerKt.SERVER_IP;
+import static com.momid.vpn.TunVpnServerKt.SERVER_IP;
 
 public class Arp {
 

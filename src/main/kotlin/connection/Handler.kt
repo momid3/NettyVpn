@@ -11,7 +11,7 @@ class ServerHandler : SimpleChannelInboundHandler<ByteBuf>() {
     override fun channelRead0(ctx: ChannelHandlerContext, packet: ByteBuf) {
         val received = ByteArray(packet.readableBytes())
         packet.readBytes(received)
-//        println("received from client: ${received.size}")
+        println("received from client: ${received.size}")
         handleIncomingUserPacket(received)
     }
 
