@@ -13,7 +13,13 @@ fun startServer() {
         while (true) {
             val packet = incomingInternetPackets.take()
             val data = Unpooled.wrappedBuffer(packet)
-            channel!!.writeAndFlush(data)
+            channel!!.writeAndFlush(data).addListener { future ->
+                if (future.isSuccess) {
+                    println("Write successful")
+                } else {
+                    println("Write failed: ${future.cause()}")
+                }
+            }
         }
     }.start()
     com.momid.connection.startServer()

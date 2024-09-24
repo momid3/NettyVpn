@@ -17,7 +17,7 @@ import io.netty.handler.ssl.SslContextBuilder
 import java.io.File
 import java.net.Inet4Address
 
-val certDirectory = File("/etc/v2ray")
+val certDirectory = File("/home/momiduser")
 
 var channel: SocketChannel? = null
 

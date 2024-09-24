@@ -17,8 +17,8 @@
 //var clientIpAddress: Inet4Address? = null
 //private val executor: ExecutorService = Executors.newSingleThreadExecutor()
 //private var handle: PcapHandle? = null
-//const val SERVER_IP = "146.19.130.158"
-//val SERVER_IP_ADDRESS = Inet4Address.getByName("146.19.130.158") as Inet4Address
+//const val SERVER_IP = "194.146.123.180"
+//val SERVER_IP_ADDRESS = Inet4Address.getByName("194.146.123.180") as Inet4Address
 //val GATEWAY_IP_ADDRESS = "146.19.130.254"
 //val usedClientSourcePorts = BooleanArray(65535) {
 //    false

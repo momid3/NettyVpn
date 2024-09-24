@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    implementation("net.java.dev.jna:jna:5.12.1")
     implementation("io.netty:netty-all:4.1.65.Final")
     implementation("org.pcap4j:pcap4j-core:1.8.2")
     implementation("org.pcap4j:pcap4j-packetfactory-static:1.8.2")
