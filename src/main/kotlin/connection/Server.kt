@@ -1,6 +1,7 @@
 package com.momid.connection
 
 import com.momid.vpn.clientIpAddress
+import com.momid.vpn.removeIp
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.ChannelOption
@@ -39,6 +40,9 @@ fun startServer() {
                 override fun initChannel(ch: SocketChannel) {
                     channel = ch
                     clientIpAddress = ch.remoteAddress().address as Inet4Address
+                    channel!!.closeFuture().addListener {
+                        removeIp(channel!!)
+                    }
                     val pipeline = ch.pipeline()
                     // Add SSL handler first to encrypt and decrypt everything
                     pipeline.addLast(sslContext.newHandler(ch.alloc()))
@@ -46,6 +50,7 @@ fun startServer() {
                     pipeline.addLast(LengthFieldBasedFrameDecoder(3800, 0, 4, 0, 4))
                     pipeline.addLast(LengthFieldPrepender(4))
                     // Add the main handler
+                    pipeline.addLast(HandshakeHandler())
                     pipeline.addLast(ServerHandler())
                 }
             })
