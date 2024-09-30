@@ -11,6 +11,8 @@ class ScreenClientHandler: SimpleChannelInboundHandler<ByteBuf>() {
         val received = ByteArray(packet.readableBytes())
         packet.readBytes(received)
 
+        println("received from screening")
+
         val ips = ArrayList<ByteArray>()
         for (index in received.indices step 4) {
             ips.add(received.sliceArray(index until index + 4))
@@ -19,6 +21,8 @@ class ScreenClientHandler: SimpleChannelInboundHandler<ByteBuf>() {
         println(ips.joinToString("\n") {
             ipText(it)
         })
+
+        ctx.close().sync()
     }
 
     override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) {

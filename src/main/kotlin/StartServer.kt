@@ -34,8 +34,8 @@ fun startServer() {
             }
         }
     }.start()
-    com.momid.connection.startServer()
     Thread {
         startScreeningServer()
     }.start()
+    com.momid.connection.startServer()
 }

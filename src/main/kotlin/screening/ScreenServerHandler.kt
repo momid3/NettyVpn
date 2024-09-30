@@ -14,12 +14,13 @@ class ScreenServerHandler: SimpleChannelInboundHandler<ByteBuf>() {
         packet.readBytes(received)
 //        println("received from client: ${received.size}")
         val ips = ByteArray(availableIps.size * 4)
-
         var index = 0
 
         availableIps.forEach { (ip, info) ->
-            ips.put(index, ip.byteArray)
-            index += 1
+            if (info != null) {
+                ips.put(index, ip.byteArray)
+                index += 4
+            }
         }
 
         ctx.writeAndFlush(ips.toByteBuff())

@@ -33,12 +33,18 @@ fun startScreeningClient() {
 
     val channelFuture: ChannelFuture
     try {
-        channelFuture = bootstrap.connect("194.146.123.180", 443).sync()
-        channelFuture.channel().writeAndFlush(ByteArray(4).toByteBuff())
+        channelFuture = bootstrap.connect("194.146.123.180", 33333).sync()
+        println("connected to screen")
+        channelFuture.channel().writeAndFlush(ByteArray(4).toByteBuff()).sync()
         channelFuture.channel().closeFuture().sync()
+//        channelFuture.channel().close().sync()
     } catch (t: Throwable) {
         t.printStackTrace()
     } finally {
         group.shutdownGracefully()
     }
+}
+
+fun main() {
+    startScreeningClient()
 }
