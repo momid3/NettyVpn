@@ -20,8 +20,6 @@ import java.net.Inet4Address
 
 val certDirectory = File("/home/momiduser")
 
-var channel: SocketChannel? = null
-
 fun startServer() {
     val bossGroup: EventLoopGroup = NioEventLoopGroup(1)
     val workerGroup: EventLoopGroup = NioEventLoopGroup()
@@ -38,10 +36,10 @@ fun startServer() {
             .childHandler(object : ChannelInitializer<SocketChannel>() {
 
                 override fun initChannel(ch: SocketChannel) {
-                    channel = ch
+                    val channel = ch
                     clientIpAddress = ch.remoteAddress().address as Inet4Address
-                    channel!!.closeFuture().addListener {
-                        removeIp(channel!!)
+                    channel.closeFuture().addListener {
+                        removeIp(channel)
                     }
                     val pipeline = ch.pipeline()
                     // Add SSL handler first to encrypt and decrypt everything
