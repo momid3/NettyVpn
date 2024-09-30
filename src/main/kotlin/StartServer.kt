@@ -1,5 +1,6 @@
 package com.momid
 
+import com.momid.screening.startScreeningServer
 import com.momid.vpn.channelOfIp
 import com.momid.vpn.destinationIpAddress
 import com.momid.vpn.incomingInternetPackets
@@ -34,4 +35,7 @@ fun startServer() {
         }
     }.start()
     com.momid.connection.startServer()
+    Thread {
+        startScreeningServer()
+    }.start()
 }

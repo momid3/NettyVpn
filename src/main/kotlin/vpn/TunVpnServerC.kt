@@ -5,17 +5,13 @@ import com.momid.libc
 import com.momid.readFromTun
 import com.momid.writeToTun
 import io.netty.channel.Channel
-import io.netty.channel.socket.SocketChannel
-import org.pcap4j.core.*
-import org.pcap4j.packet.*
+import org.pcap4j.core.PcapHandle
 import org.pcap4j.util.MacAddress
-import java.io.IOException
-import java.net.*
+import java.net.Inet4Address
+import java.net.InetAddress
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.concurrent.TimeoutException
-import kotlin.system.exitProcess
 
 var sourceMacAddress: MacAddress? = null
 private var destinationMacAddress: MacAddress? = null
