@@ -27,7 +27,7 @@ val usedClientSourcePorts = BooleanArray(65535) {
     false
 }
 
-val incomingInternetPackets = ArrayBlockingQueue<ByteArray>(300)
+val incomingInternetPackets = ArrayBlockingQueue<ByteArray>(10000)
 
 val availableIps = generateIPs()
 
