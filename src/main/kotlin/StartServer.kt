@@ -1,5 +1,6 @@
 package com.momid
 
+import com.momid.padding.offsetize
 import com.momid.screening.startScreeningServer
 import com.momid.vpn.channelOfIp
 import com.momid.vpn.destinationIpAddress
@@ -24,7 +25,7 @@ fun startServer() {
                 println("channel of ip is null")
                 continue
             }
-            val data = Unpooled.wrappedBuffer(packet)
+            val data = Unpooled.wrappedBuffer(packet.offsetize())
             channelOfIp.writeAndFlush(data).addListener { future ->
                 if (future.isSuccess) {
                     println("Write successful")

@@ -1,5 +1,6 @@
 package com.momid.connection
 
+import com.momid.padding.unoffsetize
 import com.momid.vpn.handleIncomingUserPacket
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
@@ -12,7 +13,7 @@ class ServerHandler : SimpleChannelInboundHandler<ByteBuf>() {
         val received = ByteArray(packet.readableBytes())
         packet.readBytes(received)
         println("received from client: ${received.size}")
-        handleIncomingUserPacket(received)
+        handleIncomingUserPacket(received.unoffsetize())
     }
 
     override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) {
